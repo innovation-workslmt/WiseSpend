@@ -1,7 +1,7 @@
 {
   "name": "wisespend",
   "productName": "WiseSpend",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A minimal pastel finance tracker for income, expenses, transfers and accounts",
   "author": "WiseSpend contributors",
   "license": "MIT",
@@ -15,11 +15,16 @@
   "build": {
     "appId": "com.wisespend.app",
     "productName": "WiseSpend",
-    "files": ["main.js", "index.html", "package.json"],
-    "win": { "target": "nsis", "artifactName": "WiseSpend-Setup-${version}.${ext}" },
+    "files": ["main.js", "index.html", "package.json", "icon.png"],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.png",
+      "artifactName": "WiseSpend-Setup-${version}.${ext}"
+    },
     "mac": {
       "target": { "target": "dmg", "arch": ["x64", "arm64"] },
       "category": "public.app-category.finance",
+      "icon": "icon.png",
       "artifactName": "WiseSpend-${version}-${arch}.${ext}"
     }
   },
