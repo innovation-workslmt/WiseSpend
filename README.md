@@ -1,7 +1,25 @@
-# Sable
+<p align="center">
+  <img src="assets/logo.png" alt="Sable — Finance Tracker" width="640">
+</p>
 
-A black, minimal personal finance tracker for income, expenses, transfers and accounts.
-Desktop app for Windows and Mac. No account, no cloud, no tracking — your data stays on your computer.
+<p align="center">
+  A black, minimal personal finance tracker for income, expenses, transfers and accounts.<br>
+  Desktop app for Windows and Mac. No account, no cloud, no tracking — your data stays on your computer.
+</p>
+
+## Screenshots
+
+<p align="center">
+  <img src="assets/screenshot-overview.png" alt="Sable overview: total balance, monthly income, spending, saved amount, account cards and spending by category" width="920">
+</p>
+
+<p align="center"><sub><b>Overview</b> — total balance, this month's income, spending and savings, every account, and where the money went by category.</sub></p>
+
+<p align="center">
+  <img src="assets/screenshot-transactions.png" alt="Sable transactions list with filters for type, account and category" width="920">
+</p>
+
+<p align="center"><sub><b>Transactions</b> — the full log, filterable by type, account or category, with a running net for whatever you are looking at.</sub></p>
 
 ## Download
 
@@ -72,19 +90,36 @@ No framework, no build step, no server. Data is stored in `localStorage` under t
 ```
 Sable/
 ├── .github/workflows/release.yml
-├── index.html     the entire app
-├── main.js        Electron window
-├── package.json   app + installer config
+├── assets/          logo, icon and screenshots
+├── index.html       the entire app
+├── main.js          Electron window
+├── package.json     app + installer config
 └── README.md
 ```
 
 ## Roadmap
 
-- **1.1** — edit and duplicate transactions, plus a month selector with transaction search
-- **1.2** — CSV bank statement import and JSON backup / restore
-- **1.3** — monthly budgets per category with progress, and a 12-month trend chart
-- **1.4** — recurring transactions and bill reminders
-- **2.0** — multi-currency, savings goals, and a proper app icon + signed installers
+### v1.1 — Edit and find
+- Edit / duplicate an existing transaction
+- Month selector on the Overview
+- Search transactions by note or amount
+
+### v1.2 — Real bank data
+- CSV statement import into an account
+- JSON backup / export / restore
+
+### v1.3 — Budgets and trends
+- Monthly budget per category with progress
+- 12-month income vs spending chart
+
+### v1.4 — Automation
+- Recurring transactions
+- Upcoming bills with a countdown
+
+### v2.0 — The bigger app
+- Multi-currency accounts
+- Savings goals
+- Custom app icon and signed installers
 
 ## License
 
