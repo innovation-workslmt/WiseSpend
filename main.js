@@ -3,12 +3,12 @@ const path = require('path');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1180,
-    height: 820,
+    width: 1280,
+    height: 880,
     minWidth: 420,
     minHeight: 560,
     backgroundColor: '#08080A',
-    title: 'Sable',
+    title: 'WiseSpend',
     icon: path.join(__dirname, 'assets', 'icon.png'),
     autoHideMenuBar: true,
     webPreferences: { contextIsolation: true, nodeIntegration: false }
