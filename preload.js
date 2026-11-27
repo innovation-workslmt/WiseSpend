@@ -1,4 +1,4 @@
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 
 // Hands the staged Sable 1.x store to the renderer before it starts, so the
@@ -14,3 +14,6 @@ if (arg) {
 }
 
 contextBridge.exposeInMainWorld('wisespendLegacy', raw);
+// tells main.js the staged store was adopted, so it can be removed and the
+// one-time migration check can be closed
+contextBridge.exposeInMainWorld('wisespendLegacyAdopted', () => ipcRenderer.send('legacy-store-adopted'));

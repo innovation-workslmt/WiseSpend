@@ -623,10 +623,10 @@ function noticeHTML(){
 
 /* ---------- adopt the Sable 1.x store handed over by main.js ---------- */
 function adoptLegacyStore(raw){
-  if (!raw) return 0;
+  if (!raw) return null;
   let old;
-  try { old = JSON.parse(raw); } catch(e) { return 0; }
-  if (!old || !Array.isArray(old.accounts) || !Array.isArray(old.cats) || !Array.isArray(old.tx)) return 0;
+  try { old = JSON.parse(raw); } catch(e) { return null; }
+  if (!old || !Array.isArray(old.accounts) || !Array.isArray(old.cats) || !Array.isArray(old.tx)) return null;
 
   const untouched = !localStorage.getItem(KEY);
   let added = 0;
@@ -910,7 +910,11 @@ if (verEl) verEl.innerHTML = `WiseSpend <b>v${esc(VERSION)}</b>`;
 
 /* the Sable 1.x store, staged by main.js and handed over by preload.js */
 if (window.wisespendLegacy) {
-  try { adoptLegacyStore(window.wisespendLegacy); } catch (e) { console.error('WiseSpend: legacy import failed', e); }
+  try {
+    // null means the staged store was unusable, so main.js keeps the check open
+    const added = adoptLegacyStore(window.wisespendLegacy);
+    if (added !== null && window.wisespendLegacyAdopted) window.wisespendLegacyAdopted();
+  } catch (e) { console.error('WiseSpend: legacy import failed', e); }
 }
 
 render();

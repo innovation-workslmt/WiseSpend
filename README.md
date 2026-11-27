@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <sub><b>Version 2.0.2</b> · previously released as <b>Sable</b></sub>
+  <sub><b>Version 2.0.3</b> · previously released as <b>Sable</b></sub>
 </p>
 
 ---
@@ -125,8 +125,10 @@ first launch, WiseSpend reads the Sable store through a throwaway profile and ad
 - A fresh WiseSpend profile is **replaced** with your Sable accounts, categories, transactions and accent.
 - A profile that already has entries (for example something you added in 2.0.0) is **merged** by id, so
   nothing is duplicated and nothing is deleted.
-- The imported store is staged as `sable-recovered.json` in the WiseSpend data folder; a
-  `.legacy-store-checked` marker makes the migration a one-time step.
+- The imported store is staged as `sable-recovered.json` in the WiseSpend data folder and removed once
+  the app has adopted it; a `.legacy-store-checked` marker makes the migration a one-time step.
+- That marker is only written after a successful import, or when there is no Sable profile to read. If the
+  old store cannot be read (Sable still running, for example), the next launch tries again.
 - The 1.x champagne accent preference carries over as the **Gold** accent.
 - On launch the Overview shows a one-time "Recovered from Sable" note with what was carried over.
 - Your Sable installation is left untouched — uninstall it once you have checked that your numbers are there.
@@ -182,6 +184,12 @@ Repo setting needed once: **Settings → Actions → General → Workflow permis
 
 ## What changed in 2.0
 
+### 2.0.3
+
+- A Sable store that is locked or otherwise unreadable (for example because Sable is still running) is no longer
+  written off: the import is retried on the next launch instead of being marked as checked.
+- The staged `sable-recovered.json` copy is removed once the app has adopted it.
+
 ### 2.0.2
 
 - Fixed the **Got it** button on the recovery banner, which did nothing, so the note could not be dismissed.
@@ -190,7 +198,7 @@ Repo setting needed once: **Settings → Actions → General → Workflow permis
 
 - The app is now **WiseSpend** in name as well as design: `com.wisespend.finance`, `WiseSpend-Setup-*.exe`,
   `WiseSpend-*.dmg`, and the repository is `innovation-workslmt/WiseSpend`.
-- The version is visible in the app: `WiseSpend v2.0.2` at the foot of the sidebar, and the window and installers
+- The version is visible in the app: `WiseSpend v2.0.3` at the foot of the sidebar, and the window and installers
   report the same build.
 - **Fixed the broken upgrade.** Sable's data folder is read on first launch and adopted or merged, so upgrading no
   longer looks like an empty app (see *Upgrading from Sable*).
