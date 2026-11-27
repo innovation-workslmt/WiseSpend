@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <sub><b>Version 2.0.1</b> · previously released as <b>Sable</b></sub>
+  <sub><b>Version 2.0.2</b> · previously released as <b>Sable</b></sub>
 </p>
 
 ---
@@ -182,11 +182,15 @@ Repo setting needed once: **Settings → Actions → General → Workflow permis
 
 ## What changed in 2.0
 
+### 2.0.2
+
+- Fixed the **Got it** button on the recovery banner, which did nothing, so the note could not be dismissed.
+
 ### 2.0.1
 
 - The app is now **WiseSpend** in name as well as design: `com.wisespend.finance`, `WiseSpend-Setup-*.exe`,
   `WiseSpend-*.dmg`, and the repository is `innovation-workslmt/WiseSpend`.
-- The version is visible in the app: `WiseSpend v2.0.1` at the foot of the sidebar, and the window and installers
+- The version is visible in the app: `WiseSpend v2.0.2` at the foot of the sidebar, and the window and installers
   report the same build.
 - **Fixed the broken upgrade.** Sable's data folder is read on first launch and adopted or merged, so upgrading no
   longer looks like an empty app (see *Upgrading from Sable*).

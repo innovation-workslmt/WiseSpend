@@ -616,7 +616,7 @@ function noticeHTML(){
   const n = +p.importedCount || 0;
   return `<div class="banner">
     <span class="ico">✦</span>
-    <div class="body"><b>Recovered from Sable</b><span>${n} transaction${n===1?'':'s'}, ${S.accounts.length} account${S.accounts.length===1?'':'s'} and ${S.cats.length} categories carried over.</span></div>
+    <div class="body"><b>Recovered from Sable</b> <span>${n} transaction${n===1?'':'s'}, ${S.accounts.length} account${S.accounts.length===1?'':'s'} and ${S.cats.length} categories carried over.</span></div>
     <button data-dismiss-note>Got it</button>
   </div>`;
 }
@@ -882,7 +882,7 @@ document.addEventListener('click', e => {
   if ('close' in d) return close();
   if (d.t) { ttype = d.t; return txModal(); }
   if (d.c) { pick = d.c; document.querySelectorAll('.sw button[data-c]').forEach(x => x.classList.toggle('on', x.dataset.c === pick)); return; }
-  if (d.dismissNote) { S.prefs.importedSeen = true; save(); render(); return; }
+  if ('dismissNote' in d) { S.prefs.importedSeen = true; save(); render(); return; }
   if (d.save) return saveForm(d.save);
   if (d.del) {
     if (armed !== d.del) { armed = d.del; return render(); }
