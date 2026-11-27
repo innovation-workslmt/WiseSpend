@@ -1,0 +1,30 @@
+{
+  "name": "sable-finance",
+  "productName": "Sable",
+  "version": "1.0.0",
+  "description": "Sable — a black, minimal finance tracker for income, expenses, transfers and accounts",
+  "author": "Sable contributors",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.sable.finance",
+    "productName": "Sable",
+    "files": ["main.js", "index.html", "package.json"],
+    "win": { "target": "nsis", "artifactName": "Sable-Setup-${version}.${ext}" },
+    "mac": {
+      "target": { "target": "dmg", "arch": ["x64", "arm64"] },
+      "category": "public.app-category.finance",
+      "artifactName": "Sable-${version}-${arch}.${ext}"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}
