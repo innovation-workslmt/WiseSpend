@@ -1,7 +1,7 @@
 {
   "name": "sable-finance",
   "productName": "Sable",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sable — a black, minimal finance tracker for income, expenses, transfers and accounts",
   "author": "Sable contributors",
   "license": "MIT",
@@ -15,11 +15,17 @@
   "build": {
     "appId": "com.sable.finance",
     "productName": "Sable",
-    "files": ["main.js", "index.html", "package.json"],
-    "win": { "target": "nsis", "artifactName": "Sable-Setup-${version}.${ext}" },
+    "icon": "assets/icon.png",
+    "files": ["main.js", "index.html", "package.json", "assets/icon.png"],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.png",
+      "artifactName": "Sable-Setup-${version}.${ext}"
+    },
     "mac": {
       "target": { "target": "dmg", "arch": ["x64", "arm64"] },
       "category": "public.app-category.finance",
+      "icon": "assets/icon.png",
       "artifactName": "Sable-${version}-${arch}.${ext}"
     }
   },

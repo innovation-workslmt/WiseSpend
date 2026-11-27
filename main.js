@@ -9,6 +9,7 @@ function createWindow() {
     minHeight: 560,
     backgroundColor: '#08080A',
     title: 'Sable',
+    icon: path.join(__dirname, 'assets', 'icon.png'),
     autoHideMenuBar: true,
     webPreferences: { contextIsolation: true, nodeIntegration: false }
   });
