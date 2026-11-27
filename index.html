@@ -164,7 +164,9 @@ html[data-theme="light"] .rail{background:linear-gradient(180deg,rgba(255,255,25
 .nav button.on{background:linear-gradient(90deg,var(--accent-soft),rgba(255,255,255,0) 92%);color:var(--text);font-weight:500}
 .nav button.on::before{
   content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);
-  width:3px;height:17px;border-radius:99px;background:var(--accent);box-shadow:0 0 12px var(--accent-glow);
+  width:3px;height:17px;border-radius:99px;
+  background:linear-gradient(180deg,var(--lime),var(--gold));
+  box-shadow:0 0 12px rgba(232,211,169,.35);
 }
 .nav button.on svg{color:var(--accent);opacity:1}
 .nav .count{
@@ -173,7 +175,7 @@ html[data-theme="light"] .rail{background:linear-gradient(180deg,rgba(255,255,25
   font-family:var(--font-display)
 }
 .rail-foot{margin-top:auto;display:flex;flex-direction:column;gap:14px;padding:0 4px}
-.rail-foot .divider{height:1px;background:var(--line);margin:0 -4px}
+.rail-foot .divider{height:1px;margin:0 -4px;background:linear-gradient(90deg,rgba(205,239,110,.42),rgba(232,211,169,.34),transparent 92%)}
 .foot-block{display:flex;flex-direction:column;gap:8px}
 .foot-block .k{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
 .sw{display:flex;gap:8px}
@@ -189,6 +191,28 @@ html[data-theme="light"] .rail{background:linear-gradient(180deg,rgba(255,255,25
 .ghost svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
 .currency{display:flex;align-items:center;justify-content:space-between;font-size:10.5px;letter-spacing:.12em;color:var(--faint);text-transform:uppercase}
 .currency b{font-family:var(--font-display);color:var(--text-2);font-weight:500;letter-spacing:0}
+.version{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:11px;
+  border-top:1px solid var(--line-faint);font-size:10.5px;color:var(--faint);letter-spacing:.02em;
+}
+.version b{font-family:var(--font-display);font-weight:500;color:var(--gold);letter-spacing:0}
+
+/* ---------------- recovered-from-Sable banner ---------------- */
+.banner{
+  display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 14px 12px 16px;
+  border:1px solid var(--line);border-left:2px solid var(--gold);border-radius:var(--r);
+  background:linear-gradient(90deg,rgba(232,211,169,.09),rgba(232,211,169,.02) 60%,transparent);
+}
+.banner .ico{color:var(--gold);font-size:13px;line-height:1}
+.banner .body{flex:1;min-width:0;font-size:12.5px;color:var(--text-2)}
+.banner .body b{font-family:var(--font-display);font-weight:500;color:var(--text);margin-right:6px}
+.banner .body span{color:var(--muted)}
+.banner button{
+  flex:none;font-size:11.5px;font-weight:500;color:var(--gold);padding:6px 11px;border-radius:9px;
+  border:1px solid rgba(232,211,169,.32);background:rgba(232,211,169,.07);transition:background .16s;
+}
+.banner button:hover{background:rgba(232,211,169,.16)}
+@media (max-width:600px){.banner{align-items:flex-start;flex-wrap:wrap}.banner .body{flex:1 1 100%}}
 
 /* ---------------- main ---------------- */
 main{min-width:0;width:100%;max-width:1180px;margin:0 auto;padding:34px 40px 110px}
@@ -222,8 +246,8 @@ main{min-width:0;width:100%;max-width:1180px;margin:0 auto;padding:34px 40px 110
 html[data-theme="light"] .hero{background:linear-gradient(158deg,rgba(205,239,110,.16),transparent 46%),linear-gradient(180deg,#FFFFFF,#FBFAF6)}
 .hero::before{
   content:"";position:absolute;inset:0 0 auto;height:1px;
-  background:linear-gradient(90deg,var(--accent),rgba(232,211,169,.55),transparent 68%);
-  opacity:.75;
+  background:linear-gradient(90deg,var(--accent),rgba(232,211,169,.85) 42%,transparent 74%);
+  opacity:.85;
 }
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;
@@ -236,7 +260,7 @@ html[data-theme="light"] .hero{background:linear-gradient(158deg,rgba(205,239,11
   font-family:var(--font-display);font-size:58px;font-weight:600;
   line-height:1.02;letter-spacing:-.035em;
 }
-.hero .bal em{font-style:normal;font-size:.44em;font-weight:500;color:var(--muted);margin-right:8px;vertical-align:.12em;letter-spacing:0}
+.hero .bal em{font-style:normal;font-size:.44em;font-weight:500;color:var(--gold);margin-right:8px;vertical-align:.12em;letter-spacing:0}
 .kpis{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding-top:20px;border-top:1px solid var(--line)}
 .kpi{padding-right:18px}
 .kpi + .kpi{border-left:1px solid var(--line);padding-left:20px}
@@ -277,6 +301,7 @@ html[data-theme="light"] .acct{background:linear-gradient(168deg,#FFFFFF,#FAF9F5
 .acct .dot{width:7px;height:7px;border-radius:50%;flex:none}
 .acct .name{font-size:13.5px;font-weight:500;margin:3px 0 22px;color:var(--text-2)}
 .acct .amt{position:relative;z-index:1;font-family:var(--font-display);font-size:25px;font-weight:500;letter-spacing:-.03em;line-height:1}
+.acct .amt em{font-style:normal;font-size:.68em;font-weight:500;color:var(--gold);margin-right:2px;vertical-align:.06em;letter-spacing:0}
 .acct-wrap{display:flex;flex-direction:column;gap:5px}
 .mini{
   font-size:11px;color:var(--faint);padding:5px 10px;border-radius:8px;align-self:flex-end;
@@ -302,7 +327,8 @@ html[data-theme="light"] .acct{background:linear-gradient(168deg,#FFFFFF,#FAF9F5
 .flow-bars i.out{background:linear-gradient(180deg,rgba(255,143,123,.9),rgba(255,143,123,.18))}
 html[data-theme="light"] .flow-bars i.in{background:linear-gradient(180deg,#B9DC4D,#8FB822)}
 .flow-col .m{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-family:var(--font-display)}
-.flow-col.now .m{color:var(--text-2)}
+.flow-col.now .m{color:var(--gold)}
+.flow-col.now .m::after{content:"";display:block;width:14px;height:1px;margin:5px auto 0;background:linear-gradient(90deg,var(--lime),var(--gold))}
 
 /* ---------------- bars (categories) ---------------- */
 .bars{display:flex;flex-direction:column;gap:15px}
@@ -357,9 +383,13 @@ select{
 }
 #modal.open{display:flex}
 .sheet{
-  width:100%;max-width:478px;max-height:90vh;overflow:auto;
+  position:relative;width:100%;max-width:478px;max-height:90vh;overflow:auto;
   background:var(--surface);border:1px solid var(--line-strong);border-radius:24px;padding:26px;
   box-shadow:0 50px 100px -46px #000;
+}
+.sheet::before{
+  content:"";position:absolute;top:0;left:26px;right:26px;height:1px;
+  background:linear-gradient(90deg,var(--lime),var(--gold) 55%,transparent);opacity:.8;
 }
 .sheet h3{
   margin:0 0 20px;font-family:var(--font-display);font-size:16px;font-weight:600;letter-spacing:-.02em;
@@ -448,6 +478,7 @@ select{
           <svg viewBox="0 0 24 24"><path d="M12 3v1.5M12 19.5V21M4.2 4.2l1 1M18.8 18.8l1 1M3 12h1.5M19.5 12H21M4.2 19.8l1-1M18.8 5.2l1-1"/><circle cx="12" cy="12" r="3.6"/></svg>
         </button>
         <div class="currency"><span>Currency</span><b>INR ₹</b></div>
+        <div class="version" id="version">WiseSpend <b>v2.0.1</b></div>
       </div>
     </div>
   </aside>
@@ -462,6 +493,7 @@ select{
         <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>New transaction</span>
       </button>
     </div>
+    <div id="notice"></div>
     <div id="app"></div>
   </main>
 </div>
@@ -499,6 +531,7 @@ S = S || seed();
 S.prefs = Object.assign({theme:'dark',accent:'lime'}, S.prefs || {});
 if (!ACCENTS[S.prefs.accent]) S.prefs.accent = 'lime';
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+const VERSION = new URLSearchParams(location.search).get('v') || '2.0.1';
 
 let view = 'home', F = {acc:'', cat:'', type:''}, armed = null, pick = P[0], ttype = 'expense';
 
@@ -572,9 +605,62 @@ function render(){
   $('#title').textContent = TITLES[view];
   $('#nav').innerHTML = [['home','Overview','home'],['tx','Transactions','list'],['acc','Accounts','wallet'],['cat','Categories','tag']]
     .map(([v,label,icon]) => `<button data-v="${v}" class="${view===v?'on':''}">${ICON[icon]}<span>${label}</span>${v==='tx'&&S.tx.length?`<span class="count">${S.tx.length}</span>`:''}</button>`).join('');
+  $('#notice').innerHTML = noticeHTML();
   $('#app').innerHTML = ({home, tx:txView, acc:accountsView, cat:catsView})[view]();
   applyPrefs();
 }
+
+function noticeHTML(){
+  const p = S.prefs;
+  if (!p.importedAt || p.importedSeen) return '';
+  const n = +p.importedCount || 0;
+  return `<div class="banner">
+    <span class="ico">✦</span>
+    <div class="body"><b>Recovered from Sable</b><span>${n} transaction${n===1?'':'s'}, ${S.accounts.length} account${S.accounts.length===1?'':'s'} and ${S.cats.length} categories carried over.</span></div>
+    <button data-dismiss-note>Got it</button>
+  </div>`;
+}
+
+/* ---------- adopt the Sable 1.x store handed over by main.js ---------- */
+function adoptLegacyStore(raw){
+  if (!raw) return 0;
+  let old;
+  try { old = JSON.parse(raw); } catch(e) { return 0; }
+  if (!old || !Array.isArray(old.accounts) || !Array.isArray(old.cats) || !Array.isArray(old.tx)) return 0;
+
+  const untouched = !localStorage.getItem(KEY);
+  let added = 0;
+
+  if (untouched) {
+    S.accounts = old.accounts.map(a => Object.assign({}, a));
+    S.cats = old.cats.map(c => Object.assign({}, c));
+    S.tx = old.tx.map(t => Object.assign({}, t));
+    S.prefs = Object.assign({}, S.prefs, old.prefs || {});
+    // 1.x shipped champagne / jade / iris accents; keep the gold one going
+    const carried = { champagne: 'gold', iris: 'jade' }[S.prefs.accent] || S.prefs.accent;
+    S.prefs.accent = ACCENTS[carried] ? carried : 'lime';
+    added = S.tx.length;
+  } else {
+    // the new store already has entries: merge without duplicating anything
+    const accIds = new Set(S.accounts.map(a => a.id));
+    const catIds = new Set(S.cats.map(c => c.id));
+    const txIds = new Set(S.tx.map(t => t.id));
+    old.accounts.forEach(a => { if (a && a.id && !accIds.has(a.id)) { S.accounts.push(a); accIds.add(a.id); } });
+    old.cats.forEach(c => { if (c && c.id && !catIds.has(c.id)) { S.cats.push(c); catIds.add(c.id); } });
+    old.tx.forEach(t => { if (t && t.id && !txIds.has(t.id)) { S.tx.push(t); txIds.add(t.id); added++; } });
+  }
+
+  if (added) {
+    S.prefs.importedAt = new Date().toISOString();
+    S.prefs.importedCount = added;
+    S.prefs.importedSeen = false;
+  }
+  save();
+  if (added) { view = 'home'; }
+  render();
+  return added;
+}
+window.__wisespendAdopt = adoptLegacyStore;
 
 function home(){
   const m = todayStr().slice(0,7);
@@ -666,7 +752,7 @@ function home(){
 const accCard = a => `<button class="acct" data-log="${a.id}" style="--glow:${tint(a.color,.16)}">
   <div class="bank"><span class="dot" style="background:${a.color}"></span>${esc(a.bank)}</div>
   <div class="name">${esc(a.name)}</div>
-  <div class="amt">${fmt(bal(a))}</div>
+  <div class="amt">${sgn(bal(a))}<em>₹</em>${num(bal(a), 2)}</div>
 </button>`;
 
 function txView(){
@@ -796,6 +882,7 @@ document.addEventListener('click', e => {
   if ('close' in d) return close();
   if (d.t) { ttype = d.t; return txModal(); }
   if (d.c) { pick = d.c; document.querySelectorAll('.sw button[data-c]').forEach(x => x.classList.toggle('on', x.dataset.c === pick)); return; }
+  if (d.dismissNote) { S.prefs.importedSeen = true; save(); render(); return; }
   if (d.save) return saveForm(d.save);
   if (d.del) {
     if (armed !== d.del) { armed = d.del; return render(); }
@@ -818,6 +905,14 @@ document.addEventListener('keydown', e => {
 });
 
 applyPrefs();
+const verEl = $('#version');
+if (verEl) verEl.innerHTML = `WiseSpend <b>v${esc(VERSION)}</b>`;
+
+/* the Sable 1.x store, staged by main.js and handed over by preload.js */
+if (window.wisespendLegacy) {
+  try { adoptLegacyStore(window.wisespendLegacy); } catch (e) { console.error('WiseSpend: legacy import failed', e); }
+}
+
 render();
 </script>
 </body>

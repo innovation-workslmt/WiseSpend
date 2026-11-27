@@ -8,6 +8,10 @@
   No account, no cloud, no tracking — your data stays on your computer.
 </p>
 
+<p align="center">
+  <sub><b>Version 2.0.1</b> · previously released as <b>Sable</b></sub>
+</p>
+
 ---
 
 ## Screenshots
@@ -112,6 +116,21 @@ alongside **Lime** and **Jade**.
 
 Balance of an account = opening balance + income − expenses − transfers out + transfers in.
 
+## Upgrading from Sable
+
+WiseSpend used to be Sable, and renaming an Electron app moves the folder it keeps its data in
+(`%APPDATA%/Sable` on Windows, `~/Library/Application Support/Sable` on macOS). 2.0.1 fixes that: on the
+first launch, WiseSpend reads the Sable store through a throwaway profile and adopts it.
+
+- A fresh WiseSpend profile is **replaced** with your Sable accounts, categories, transactions and accent.
+- A profile that already has entries (for example something you added in 2.0.0) is **merged** by id, so
+  nothing is duplicated and nothing is deleted.
+- The imported store is staged as `sable-recovered.json` in the WiseSpend data folder; a
+  `.legacy-store-checked` marker makes the migration a one-time step.
+- The 1.x champagne accent preference carries over as the **Gold** accent.
+- On launch the Overview shows a one-time "Recovered from Sable" note with what was carried over.
+- Your Sable installation is left untouched — uninstall it once you have checked that your numbers are there.
+
 ## Download
 
 Go to **[Releases](../../releases/latest)** and pick your file:
@@ -163,6 +182,19 @@ Repo setting needed once: **Settings → Actions → General → Workflow permis
 
 ## What changed in 2.0
 
+### 2.0.1
+
+- The app is now **WiseSpend** in name as well as design: `com.wisespend.finance`, `WiseSpend-Setup-*.exe`,
+  `WiseSpend-*.dmg`, and the repository is `innovation-workslmt/WiseSpend`.
+- The version is visible in the app: `WiseSpend v2.0.1` at the foot of the sidebar, and the window and installers
+  report the same build.
+- **Fixed the broken upgrade.** Sable's data folder is read on first launch and adopted or merged, so upgrading no
+  longer looks like an empty app (see *Upgrading from Sable*).
+- More of the original gold: the remembered currency symbol on balances, the active navigation bar, the divider
+  above the sidebar settings, the current month on the money flow chart and the sheet edge all pick up champagne.
+
+### 2.0.0
+
 - Complete visual redesign to the WiseSpend design language: black canvas, lime accent, Space Grotesk display type, 26/20px radii, hairline borders, tabular financial figures.
 - New brand mark, app icon and wordmark (lime-to-gold gradient) replacing the gold "S".
 - New six-month money flow chart on the Overview, plus a savings rate chip on spending.
@@ -181,7 +213,9 @@ WiseSpend/
 ├── .github/workflows/release.yml
 ├── assets/          icon, wordmark and screenshots
 ├── index.html       the entire app
-├── main.js          Electron window
+├── legacy-read.html blank page used to read an old Sable profile
+├── main.js          Electron window + the Sable upgrade path
+├── preload.js       hands the staged Sable store to the app
 ├── package.json     app + installer config
 └── README.md
 ```

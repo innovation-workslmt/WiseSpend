@@ -1,7 +1,7 @@
 {
   "name": "wisespend",
   "productName": "WiseSpend",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "WiseSpend — a premium minimalist finance tracker for income, expenses, transfers and accounts",
   "author": "WiseSpend contributors",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "appId": "com.wisespend.finance",
     "productName": "WiseSpend",
     "icon": "assets/icon.png",
-    "files": ["main.js", "index.html", "package.json", "assets/icon.png"],
+    "files": ["main.js", "preload.js", "index.html", "legacy-read.html", "package.json", "assets/icon.png"],
     "win": {
       "target": "nsis",
       "icon": "assets/icon.png",
