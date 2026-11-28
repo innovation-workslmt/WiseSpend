@@ -1,13 +1,14 @@
 {
   "name": "wisespend",
   "productName": "WiseSpend",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "WiseSpend — a premium minimalist finance tracker for income, expenses, transfers and accounts",
   "author": "WiseSpend contributors",
   "license": "MIT",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
+    "test": "node --test test/calc.test.js",
     "dist": "electron-builder",
     "dist:win": "electron-builder --win",
     "dist:mac": "electron-builder --mac"
@@ -16,7 +17,7 @@
     "appId": "com.wisespend.finance",
     "productName": "WiseSpend",
     "icon": "assets/icon.png",
-    "files": ["main.js", "preload.js", "index.html", "legacy-read.html", "package.json", "assets/icon.png"],
+    "files": ["main.js", "preload.js", "index.html", "calc.js", "legacy-read.html", "package.json", "assets/icon.png"],
     "win": {
       "target": "nsis",
       "icon": "assets/icon.png",

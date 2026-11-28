@@ -4,9 +4,10 @@ A chronological record of how this app was built: what was shipped, why each cha
 was made, where the bugs were, and how every release was verified.
 
 Scope: everything in this repository, from the first `Sable 1.0.0` commit on
-**2026-11-27** to the **WiseSpend 2.0.3** release on **2026-11-28**. It covers the
+**2026-11-27** to the **WiseSpend 2.1.0** release on **2026-11-28**. It covers the
 product, the architecture, the data migration, the release pipeline, what has been
-proven by testing and what has not.
+proven by testing and what has not. Sections 1–14 describe the 2.0 line as it was
+built; [§15](#15-210--the-planning-release) covers everything 2.1 added.
 
 ---
 
@@ -26,6 +27,7 @@ proven by testing and what has not.
 12. [Known issues and debt](#12-known-issues-and-debt)
 13. [Roadmap](#13-roadmap)
 14. [Appendix — commands that work](#14-appendix--commands-that-work)
+15. [2.1.0 — the planning release](#15-210--the-planning-release)
 
 ---
 
@@ -49,10 +51,11 @@ proven by testing and what has not.
   complete even when the old store could not be read (2.0.3).
 - **Releases are automatic:** pushing a `v*` tag runs a two-job GitHub Actions workflow
   that builds `WiseSpend-Setup-<version>.exe` plus x64 and arm64 `.dmg` files and
-  attaches them to the release. Six releases exist; **2.0.3** is the current one.
+  attaches them to the release. Seven releases exist; **2.1.0** is the current one
+  (see [§15](#15-210--the-planning-release)).
 - **What is not done:** installers are unsigned, the macOS `.dmg` has never been
-  installed on a Mac, the NSIS uninstaller hangs silently, there is no export/backup,
-  and there are no tests in CI.
+  installed on a Mac, the NSIS uninstaller hangs silently, and the test suite does not
+  run in CI yet.
 
 ---
 
@@ -437,13 +440,10 @@ Ranked by value; none of these are started.
 
 ## 13. Roadmap
 
-As written in the README, not started:
-
-- **v2.1 — Edit and find:** edit/duplicate a transaction, month selector on the Overview,
-  search by note or amount.
-- **v2.2 — Real bank data:** CSV statement import, JSON backup / export / restore.
-- **v2.3 — Budgets and trends:** monthly budget per category with progress, savings goals
-  with gold progress rings.
+What used to be listed here — edit/find, CSV and JSON import/export, budgets and goals —
+ship in 2.1.0 ([§15](#15-210--the-planning-release)). What is left is in the README's
+roadmap: multi-currency accounts, an app lock, reorderable Overview cards and desktop
+notifications for reminders.
 
 ---
 
@@ -475,3 +475,58 @@ grep -a -c 'legacy-store-adopted' /tmp/out/resources/app.asar
 confirmed import or when there is no Sable profile; the staged copy is deleted as soon as
 it is adopted; a migration failure must log and retry rather than mark itself done; and
 the app never writes to the Sable profile.
+
+---
+
+## 15. 2.1.0 — the planning release
+
+2.0.3 could record money. 2.1 can plan it. Everything below is in the single
+`index.html`/Electron shell; the state key, the Sable import and the release pipeline are
+untouched.
+
+**What was added:** editing, duplicating and deleting transactions with a six-second undo;
+search plus type / account / category / month / date-range filters and four sorts; CSV
+export and import and JSON backup and restore with duplicate detection, under five rotating
+local snapshots; monthly budgets (overall and per category) with copy-forward; savings goals
+with progress rings, required monthly amount and contribute/withdraw that writes a matching
+transaction; recurring items on five cadences with subscription totals and the next 30 days;
+insights, a six-month chart and an essential-vs-discretionary split; a 30/60/90-day forecast;
+net worth with assets, liabilities, loans, credit card outstanding and reconciliation; a
+calendar of recurring payments, goal deadlines and reminders; and a settings view with
+theme, accent, currency, locale and essential labels.
+
+**The money maths moved out of the page.** `calc.js` is a plain UMD module that `index.html`
+loads before its inline script, so balances, monthly totals, budgets, goals, recurring
+cadence, forecast and net worth are one implementation, not two. `test/calc.test.js` runs it
+under `node --test` — 18 tests, no new dependencies.
+
+**Bugs found and fixed by the review pass:**
+
+- the Budgets view crashed on a `warn` variable that no longer existed;
+- the goal "on track" test was inverted, and its expected saving ignored when the goal was set;
+- the forecast copy promised recurring items but the maths never used them; the first fix
+  added them on top of a 90-day average that already contains those payments, which
+  counted every subscription twice. The forecast now takes the history as the only source
+  for recurring spending (and the app says so on the card). The regression test seeds a
+  ₹450 monthly charge, three times in the window, and asserts the projection subtracts it
+  once;
+- a forecast date filter compared a UTC-parsed date with local dates, shifting the window
+  by a day;
+- every keystroke in the transaction search re-rendered the view and dropped focus, so only
+  one character ever landed. The handler now restores focus and the caret after the render.
+  Found while taking the release screenshots, not by a user;
+- smaller display fixes: the insights chart said "last 12 months" while drawing six, the
+  average savings rate divided by empty months, and the settings currency fields fell back
+  to unstyled browser inputs because they had no `type` attribute.
+
+**Version.** The unreleased work was labelled 2.1–2.7 internally while it was being built.
+The last published release is 2.0.3, so all of it ships as one minor release, **2.1.0** —
+the version now reported by the app, the window, the installer metadata and the sidebar.
+
+**Released:** `v2.1.0` — `WiseSpend-Setup-2.1.0.exe`, `WiseSpend-2.1.0-arm64.dmg`,
+`WiseSpend-2.1.0-x64.dmg`, built by the same tag-triggered workflow.
+
+**Verified:** `npm test` 18/18; the packaged Windows build launched with no page errors,
+reported `WiseSpend v2.1.0`, loaded `Calc` from the asar and rendered all 12 views; the
+screenshots in `assets/` were captured from that build against a sample month of data.
+Not verified: the macOS installers, and the same code signed.
